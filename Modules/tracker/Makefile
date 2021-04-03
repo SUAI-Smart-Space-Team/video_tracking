@@ -10,7 +10,7 @@ VERSION_IMAGE   := ${BASE_IMAGE}:${VERSION}
 
 image:
 	docker build -f Dockerfile -t ${BASE_IMAGE} .
-	#docker build -f sort.py -t ${BASE_IMAGE} .
+
 push:
 	docker login -u scherbet -p '0d92f365-316d-4ed8-a491-94247ea877ee'
 	docker tag ${BASE_IMAGE} ${VERSION_IMAGE}
