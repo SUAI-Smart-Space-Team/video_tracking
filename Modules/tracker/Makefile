@@ -9,7 +9,7 @@ VERSION_IMAGE   := ${BASE_IMAGE}:${VERSION}
 #BRANCH := main
 
 image:
-	docker build -f server.py -t ${BASE_IMAGE} .
+	docker build -f Dockerfile -t ${BASE_IMAGE} .
 	#docker build -f sort.py -t ${BASE_IMAGE} .
 push:
 	docker login -u scherbet -p '0d92f365-316d-4ed8-a491-94247ea877ee'
