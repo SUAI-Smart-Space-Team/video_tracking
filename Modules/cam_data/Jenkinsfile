@@ -1,0 +1,17 @@
+pipeline {
+    agent {
+       label "deploy"
+    }
+    stages {
+          stage("connect") {
+             steps {
+               script {
+                   sh '''
+                   make image push VERSION=cam_data 
+                   make image pull VERSION=cam_data
+                   '''
+               }
+             }
+          }
+        }
+}
