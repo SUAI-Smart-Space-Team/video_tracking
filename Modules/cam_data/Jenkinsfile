@@ -7,8 +7,9 @@ pipeline {
              steps {
                script {
                    sh '''
-                   make image push VERSION=cam_data 
-                   make image pull VERSION=cam_data
+                   make image VERSION=cam_data FILE=./Modules/cam_data/Dockerfile BRANCH=null
+                   make push VERSION=cam_data
+                   make pull VERSION=cam_data
                    '''
                }
              }
