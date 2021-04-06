@@ -1,0 +1,19 @@
+pipeline {
+    agent {
+       label "deploy"
+    }
+    stages {
+          stage("connect") {
+             steps {
+               script {
+                   sh '''
+                   make image VERSION=show BRANCH=null FILE=./Modules/detection/Dockerfile
+                   make push VERSION=show
+                   make pull VERSION=show  
+                   '''
+                   
+               }
+             }
+          }
+        }
+}
