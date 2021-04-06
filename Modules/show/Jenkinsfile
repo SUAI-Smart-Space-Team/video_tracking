@@ -1,0 +1,18 @@
+pipeline {
+    agent {
+       label "deploy"
+    }
+    stages {
+          stage("connect") {
+             steps {
+               script {
+                   sh '''
+                   make image push VERSION=test_valek 
+                   make image pull VERSION=test_valek
+                   '''
+                   
+               }
+             }
+          }
+        }
+}
