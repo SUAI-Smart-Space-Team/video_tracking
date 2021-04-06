@@ -1,5 +1,7 @@
 REGISTRY 		:= smartspace
 NAME 			:= storage
+VERSION			:= 0.0.2
+FILE			:= server.py
 BASE_IMAGE 		:= ${REGISTRY}/${NAME}
 VERSION_IMAGE   := ${BASE_IMAGE}:${VERSION}
 #BRANCH_IMAGE    := ${VERSION_IMAGE}-$(BRANCH)
