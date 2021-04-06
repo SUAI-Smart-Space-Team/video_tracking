@@ -8,7 +8,8 @@ pipeline {
                script {
 
                    sh '''
-                   ./tracker/build_docker.sh
+                   docker run -i --rm -v $(pwd)/tracker/build_docker.sh:/tracker/build_docker.sh
+                   chmod +x ./tracker/build_docker.sh
                    #make image push
                    #make image pull
                    '''
