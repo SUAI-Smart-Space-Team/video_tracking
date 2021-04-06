@@ -1,4 +1,5 @@
 REGISTRY 		:= smartspace
+NAME 			:= storage
 BASE_IMAGE 		:= ${REGISTRY}/${NAME}
 VERSION_IMAGE   := ${BASE_IMAGE}:${VERSION}
 #BRANCH_IMAGE    := ${VERSION_IMAGE}-$(BRANCH)
