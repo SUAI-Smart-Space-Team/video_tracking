@@ -7,9 +7,9 @@ pipeline {
              steps {
                script {
                    sh '''
-                   make image VERSION=show BRANCH=null FILE=./Modules/detection/Dockerfile
-                   make push VERSION=show
-                   make pull VERSION=show  
+                   make image VERSION=detection BRANCH=null FILE=./Modules/detection/Dockerfile
+                   make push VERSION=detection
+                   make pull VERSION=detection  
                    '''
                    
                }
