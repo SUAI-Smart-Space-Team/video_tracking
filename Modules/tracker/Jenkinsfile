@@ -6,9 +6,11 @@ pipeline {
           stage("connect") {
              steps {
                script {
+
                    sh '''
-                   make image push
-                   make image pull
+                   ./tracker/build_docker.sh
+                   #make image push
+                   #make image pull
                    '''
                }
              }
