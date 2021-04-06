@@ -4,7 +4,7 @@ FROM python:3.8.1
 
 RUN apt update && apt install libusb-1.0-0 && apt install python3
 
-COPY . ./
+COPY requirements.txt server.py ./
 
 RUN pip install -r requirements.txt
 
