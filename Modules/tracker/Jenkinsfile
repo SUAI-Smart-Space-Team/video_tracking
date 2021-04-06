@@ -8,10 +8,8 @@ pipeline {
                script {
 
                    sh '''
-                   docker run -i --rm -v $(pwd)/tracker/build_docker.sh:/tracker/build_docker.sh
-                   chmod +x ./tracker/build_docker.sh
-                   #make image push
-                   #make image pull
+                   make image push VERSION=tracker_0.0.1
+                   make image pull VERSION=tracker_0.0.1
                    '''
                }
              }
