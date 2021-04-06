@@ -9,7 +9,7 @@ VERSION_IMAGE   := ${BASE_IMAGE}:${VERSION}
 #BRANCH := main
 
 image:
-	docker build -f ${NAME} -t ${BASE_IMAGE} .
+	docker build -f ${FILE} -t ${BASE_IMAGE} .
 	
 
 push:
