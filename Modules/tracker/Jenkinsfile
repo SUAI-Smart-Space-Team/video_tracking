@@ -7,11 +7,13 @@ pipeline {
              steps {
                script {
                    sh '''
-                   make image push VERSION=tracker
-                   make image pull VERSION=tracker
+                   make image VERSION=tracker BRANCH=null FILE=./Modules/tracker/Dockerfile
+                   make push VERSION=tracker
+                   make pull VERSION=tracker  
                    '''
-              }
-           }
+                   
+               }
+             }
+          }
         }
-    }
 }
