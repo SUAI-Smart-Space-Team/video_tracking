@@ -7,7 +7,7 @@ pipeline {
              steps {
                script {
                    sh '''
-                   make image FILE=Dockerfile VERSION=0.0.2
+                   make image FILE=server.py VERSION=0.0.2
                    make push VERSION=0.0.2
                    make pull VERSION=0.0.2
                    '''
