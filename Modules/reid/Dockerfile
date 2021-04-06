@@ -8,7 +8,7 @@ WORKDIR /server
 RUN apt update && apt install -y python3 python3-pip python3-opencv cmake
 RUN pip3 install scikit-build
 
-COPY requirements.txt requirements.txt
+COPY ./Modules/reid/requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 COPY . .
 
