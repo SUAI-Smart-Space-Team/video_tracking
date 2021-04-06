@@ -4,7 +4,7 @@ WORKDIR /server
 
 RUN apt update && apt install libusb-1.0-0
 
-COPY requirements.txt requirements.txt
+COPY ./Modules/cam_data/requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 COPY . .
 CMD ["python", "server.py"] 
