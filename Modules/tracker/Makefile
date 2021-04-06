@@ -1,6 +1,6 @@
 REGISTRY 		:= smartspace
 NAME 			:= storage
-VERSION			:= 0.0.2
+#VERSION			:= 0.0.2
 #FILE			:= server.py
 BASE_IMAGE 		:= ${REGISTRY}/${NAME}
 VERSION_IMAGE   := ${BASE_IMAGE}:${VERSION}
@@ -9,7 +9,7 @@ VERSION_IMAGE   := ${BASE_IMAGE}:${VERSION}
 #BRANCH := main
 
 image:
-	docker build -f server.py -t ${NAME}:${VERSION} .
+	docker build -f Dockerfile -t ${NAME}:${VERSION} .
 
 push:
 	docker login -u scherbet -p '0d92f365-316d-4ed8-a491-94247ea877ee'
@@ -20,4 +20,4 @@ push:
 	#docker push ${REGISTRY}/${NAME}:${VERSION}-$(BRANCH)
 pull:
 	docker login -u scherbet -p '0d92f365-316d-4ed8-a491-94247ea877ee'
-    docker pull ${REGISTRY}/${NAME}:${VERSION}
+	docker pull ${REGISTRY}/${NAME}:${VERSION}
