@@ -6,13 +6,12 @@ pipeline {
           stage("connect") {
              steps {
                script {
-
                    sh '''
-                   make image push VERSION=tracker_0.0.1
-                   make image pull VERSION=tracker_0.0.1
+                   make image push VERSION=tracker
+                   make image pull VERSION=tracker
                    '''
-               }
-             }
-          }
+              }
+           }
         }
+    }
 }
