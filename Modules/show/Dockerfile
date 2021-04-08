@@ -6,6 +6,7 @@ RUN apt update && apt install -y libgl1-mesa-glx libglib2.0-0 xvfb
 
 COPY ./Modules/show/requirements.txt requirements.txt
 RUN pip install -r requirements.txt
+RUN apt-get update && apt-get install curl -y
 
 #RUN conda install -y python=3.6
 
