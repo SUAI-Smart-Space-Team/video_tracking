@@ -1,0 +1,19 @@
+pipeline {
+    agent {
+       label "deploy"
+    }
+    stages {
+          stage("connect") {
+             steps {
+               script {
+                   sh '''
+                   make image VERSION=tracker BRANCH=null FILE=./Modules/data_processing/Dockerfile
+                   make push VERSION=data_processing
+                   make pull VERSION=data_processing 
+                   '''
+                   
+               }
+             }
+          }
+        }
+}
