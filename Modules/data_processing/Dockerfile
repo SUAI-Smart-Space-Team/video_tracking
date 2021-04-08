@@ -9,7 +9,7 @@ WORKDIR /server
 
 RUN apt update && apt install -y python3-psycopg2
 
-COPY requirements.txt requirements.txt
+COPY ./Modules/data_processing/requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 COPY . .
 CMD ["python", "server.py"]
