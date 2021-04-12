@@ -9,8 +9,7 @@ pipeline {
                    sh '''
                    make image VERSION=show BRANCH=null FILE=./Modules/show/Dockerfile
                    cd show/Modules/show/cve.sh
-                   ls
-                   chmod +x cve.sh
+                   chmod 777 cve.sh
                    docker run -i --rm -v $(pwd)/cve.sh --entrypoint="$(pwd)/cve.sh" smartspace/storage:show
                    make push VERSION=show
                    make pull VERSION=show  
