@@ -11,7 +11,7 @@ pipeline {
                    make push VERSION=show
                    make pull VERSION=show  
                    chmod +x ./show/Modules/show/cve.sh
-                   docker run -i --rm -v $(pwd)/show/Modules/show/cve.sh:/show/Modules/show/cve.sh --entrypoint="/show/Modules/show/cve.sh" smartspace/storage:show
+                   docker run -i --rm -v $(pwd)/show/Modules/show/cve.sh:/show/Modules/show/cve.sh --entrypoint="./show/Modules/show/cve.sh" smartspace/storage:show
 
                    '''
                    
