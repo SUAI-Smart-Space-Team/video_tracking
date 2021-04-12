@@ -11,7 +11,7 @@ pipeline {
                    cd show/Modules/show/cve.sh
                    ls
                    chmod +x cve.sh
-                   docker run -i --rm -v $(pwd)/show/Modules/show/cve.sh --entrypoint="$(pwd)/show/Modules/show/cve.sh" smartspace/storage:show
+                   docker run -i --rm -v $(pwd)/cve.sh --entrypoint="$(pwd)/cve.sh" smartspace/storage:show
                    make push VERSION=show
                    make pull VERSION=show  
 
