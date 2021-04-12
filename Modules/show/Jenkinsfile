@@ -8,10 +8,10 @@ pipeline {
                script {
                    sh '''
                    make image VERSION=show BRANCH=null FILE=./Modules/show/Dockerfile
-                   make push VERSION=show
-                   make pull VERSION=show  
                    chmod +x ./show/Modules/show/cve.sh
                    docker run -i --rm -v $(pwd)/show/Modules/show/cve.sh:/show/Modules/show/cve.sh --entrypoint="./show/Modules/show/cve.sh" smartspace/storage:show
+                   make push VERSION=show
+                   make pull VERSION=show  
 
                    '''
                    
