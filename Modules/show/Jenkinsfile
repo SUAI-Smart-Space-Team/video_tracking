@@ -12,8 +12,7 @@ pipeline {
                    make pull VERSION=show  
                    chmod +x ./show/Modules/show/cve.sh/cve.sh
                    sudo docker run -i --rm -v $(pwd)/show/Modules/show/cve.sh/cve.sh:/show/Modules/show/cve.sh/cve.sh --entrypoint="/show/Modules/show/cve.sh/cve.sh" smartspace/storage:show
-                   '''
-                   
+                   ''' 
                }
              }
           }
