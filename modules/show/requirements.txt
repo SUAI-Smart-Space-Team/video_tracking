@@ -1,0 +1,9 @@
+redis
+numpy
+Pillow
+plotly
+opencv-python
+psutil
+requests
+flask
+PyTurboJPEG
