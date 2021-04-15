@@ -35,8 +35,8 @@ def get_boxes_out_of_depth_frame(depth_frame, boxes, masks):
 
 
 def draw_tracking(coords=None, ids=None):
-    fig_ylim = [0.0, 11.0]
-    fig_xlim = [-4, 4]
+    fig_ylim = [0.0, 8.8]
+    fig_xlim = [0, 5.4]
     if coords is None:
         figure = go.Figure()
     else:

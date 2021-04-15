@@ -15,7 +15,7 @@ p = r.pubsub()
 im_shape = [int(s) for s in r.get('im-shape').split()]
 
 room, cameras = read_json('search_coord/room.json')
-camera = cameras[0]
+camera = cameras[1]
 
 
 def get_boxes_out_of_depth_frame(depth_frame, boxes, masks):
@@ -71,7 +71,7 @@ def get_coord(boxes, distance, frame_shape) -> np.array:
         j = (y_bottom + y_top) // 2
 
         person_point = get_coordinates(camera=cameras[0], h=frame_shape[0], w=frame_shape[1], j=j, i=i, r=distance[ind])
-        coordinates.append([person_point.x, person_point.y])
+        coordinates.append([person_point.y, person_point.x - 1])
 
     return np.array(coordinates, dtype=np.float16)
 

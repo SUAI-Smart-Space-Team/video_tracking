@@ -9,8 +9,8 @@ def get_coordinates(camera: Camera, h: np.float, w: np.float,
 
     central_point_x = w / 2
     central_point_y = h / 2
-    distance_to_person_point_x = np.abs(j - central_point_x)
-    distance_to_person_point_y = np.abs(i - central_point_y)
+    distance_to_person_point_x = np.abs(i - central_point_x)
+    distance_to_person_point_y = np.abs(j - central_point_y)
     distance_to_person_point_pix = np.sqrt(distance_to_person_point_x ** 2 + distance_to_person_point_y ** 2)
 
     camera_vector_len = np.sqrt((camera.point.x - camera.point_to.x) ** 2 +
@@ -30,7 +30,6 @@ def get_coordinates(camera: Camera, h: np.float, w: np.float,
         r_to_center_real = np.cos(np.radians(angle_to_person_in_space)) * r
 
         distance_to_person_point_real = np.sqrt(r ** 2 - r_to_center_real ** 2)
-        ratio_pix_to_real = distance_to_person_point_pix / distance_to_person_point_real
 
         central_point_real = point_from_ratio(camera.point, camera.point_to,
                                               (r_to_center_real / camera_vector_len))
@@ -38,17 +37,17 @@ def get_coordinates(camera: Camera, h: np.float, w: np.float,
         dxdy = np.sin(np.radians(angle_to_person_on_map)) * distance_to_person_point_real
         gamma = 90 - camera.angle_v if camera.angle_v <= 90 else camera.angle_v - 90
         dz = np.cos(np.radians(gamma)) * dxdy \
-             * (-1 if i - central_point_y > 0 else 1) \
-             * (-1 if camera.angle_v <= 90 else 1)
+             * (-1 if j - central_point_y > 0 else 1) \
+             * (-1 if camera.angle_v >= 90 else 1)
 
         dx_from_cam = np.sqrt(dxdy ** 2 - dz ** 2) \
-                      * (-1 if camera.angle_v <= 90 else 1)
+                      * (-1 if camera.angle_v >= 90 else 1)
         dy_from_cam = distance_to_person_point_real * (90 - angle_to_person_on_map) / 90
 
         vector = np.array([dx_from_cam
-                           * (-1 if i - central_point_y < 0 else 1),
+                           * (-1 if j - central_point_y < 0 else 1),
                            dy_from_cam
-                           * (-1 if j - central_point_x < 0 else 1)])
+                           * (-1 if i - central_point_x < 0 else 1)])
 
         matrix = np.array([[np.cos(np.radians(360 - camera.angle_h)),
                             -np.sin(np.radians(360 - camera.angle_h))],

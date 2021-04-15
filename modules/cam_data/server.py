@@ -22,6 +22,8 @@ p = r.pubsub()
 
 jpeg = TurboJPEG()
 
+rp = int(os.getenv('IS_RP'))
+
 last_time = 0
 DM = {}
 
@@ -54,8 +56,9 @@ def get_color_and_depth_frames():
     depth_frame = frameset.get_depth_frame()
     depth = np.asanyarray(depth_frame.get_data())
 
-    # color = np.rot90(color, 2).astype(np.uint8)
-    # depth = np.rot90(depth, 2)
+    if rp == 1:
+        color = np.rot90(color, 2).astype(np.uint8)
+        depth = np.rot90(depth, 2)
 
     # x 0.85248447 0.84908537
     # y 1.03574879 0.96441948

@@ -2,6 +2,7 @@ FROM python:3.7.10-slim
 
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/server/pylibrs/
 ENV PYTHONPATH=$PYTHONPATH:/server/pylibrs/
+ENV IS_RP=1
 
 WORKDIR /server
 
