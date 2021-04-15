@@ -34,14 +34,18 @@ $ docker run hello-world
 ----
 
 ## Run project 
-Run docker using network parametres, for example:
-```bash
-$ docker pull 
-```
+
 Enter folder: modules/cam_data
 ```bash
 $ docker build . -f Dockerfile.rp4 -t smart-space-tracking-camera
 ```
+
+```bash
+$ docker pull 
+```
+
+Run project using network parametres, for example:
+
 ```bash
 $ docker run —name smart-space-tracking-camera -d —privileged -v /dev:/dev -e SMART_SPACE_TRACKING_REDIS_PORT_6379_TCP_ADDR="XXX.XXX.XXX.XXX" smart-space-tracking-camera
 ```
