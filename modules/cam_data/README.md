@@ -36,11 +36,11 @@ $ docker run hello-world
 ## Run project 
 
 Enter folder: modules/cam_data
-<!-- a normal html comment -
+<!-- a normal html comment 
 ```bash
 $ docker build . -f Dockerfile.rp4 -t smart-space-tracking-camera
 ```
-->
+-->
 
 ```bash
 $ docker pull site
