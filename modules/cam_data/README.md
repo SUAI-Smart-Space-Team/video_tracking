@@ -36,7 +36,7 @@ $ docker run hello-world
 ## Run project 
 Run docker using network parametres, for example:
 ```bash
-$ git pull https://github.com/SUAI-Smart-Space-Team/video_tracking/tree/upgrade/modules/cam_data
+$ docker pull 
 ```
 Enter folder: modules/cam_data
 ```bash
