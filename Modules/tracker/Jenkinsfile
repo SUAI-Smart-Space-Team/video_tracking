@@ -10,8 +10,7 @@ pipeline {
                    make image VERSION=tracker BRANCH=null FILE=./Modules/tracker/Dockerfile
                    make push VERSION=tracker
                    make pull VERSION=tracker  
-                   chmod +x ./Modules/tracker/cve.sh
-                   sudo docker run -i --rm -v $(pwd)/Modules/tracker/cve.sh:/Modules/tracker/cve.sh --entrypoint="/Modules/tracker/cve.sh" smartspace/storage:tracker
+                   
                    '''
                    
                }
