@@ -9,25 +9,27 @@ Install Ubuntu for Rasperry Pi (the distrubutive may be taken from [instruction]
 ## Install Docker
 Install docker following the following instruction:
 1. Update and Upgrade 
-sudo apt-get update && sudo apt-get upgrade
-2. Download the Convenience Script and Install Docker on Raspberry Pi
+```bash
+$ sudo apt-get update && sudo apt-get upgrade
 ```
+2. Download the Convenience Script and Install Docker on Raspberry Pi
+```bash
 $ curl -fsSL https://get.docker.com -o get-docker.sh
 $ sudo sh get-docker.sh
 ```
 3. Add a Non-Root User to the Docker Group
-```
-sudo usermod -aG docker [user_name] (Pi by default)
+```bash
+$ sudo usermod -aG docker [user_name] (Pi by default)
 ```
 4. Logout & login
 5. Check Docker Version and Info
-```
-docker version
-docker info
+```bash
+$ docker version
+$ docker info
 ```
 5. Test Docker by running the Hello World Container
-```
-docker run hello-world
+```bash
+$ docker run hello-world
 ```
 ----
 
