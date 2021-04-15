@@ -43,7 +43,7 @@ $ docker build . -f Dockerfile.rp4 -t smart-space-tracking-camera
 -->
 
 ```bash
-$ docker pull site
+$ docker pull smartspace/storage:cam_data
 ```
 
 Run project using network parametres, for example:
