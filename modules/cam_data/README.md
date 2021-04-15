@@ -6,7 +6,7 @@ Install Ubuntu for Rasperry Pi (the distrubutive may be taken from [instruction]
 
 ----
 
-## Install Docker
+## Prerequirements
 Install docker following the following instruction:
 1. Update and Upgrade 
 ```bash
@@ -33,9 +33,11 @@ $ docker run hello-world
 ```
 ----
 
-## Run docker 
+## Run project 
 Run docker using network parametres, for example:
-
+```bash
+$ git pull https://github.com/SUAI-Smart-Space-Team/video_tracking/tree/upgrade/modules/cam_data
+```
 Enter folder: modules/cam_data
 ```bash
 $ docker build . -f Dockerfile.rp4 -t smart-space-tracking-camera
@@ -44,4 +46,3 @@ $ docker build . -f Dockerfile.rp4 -t smart-space-tracking-camera
 $ docker run —name smart-space-tracking-camera -d —privileged -v /dev:/dev -e SMART_SPACE_TRACKING_REDIS_PORT_6379_TCP_ADDR="XXX.XXX.XXX.XXX" smart-space-tracking-camera
 ```
 - XXX.XXX.XXX.XXX is the main server address
-
