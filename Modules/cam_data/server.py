@@ -35,8 +35,23 @@ r.set('depth_scale', depth_scale)
 
 last_time = 0
 
+#test
+fps=0
+data_size=0
+
+
+
 
 def get_frameset():
+"""
+This method gets frameset from  Intel Real Sense camera.
+
+Exceptions:
+    If any errors occur during code execution,it will reconnect to Intel Real Sense camera.
+
+    :return: set of frames
+    """
+
     while True:
         try:
             frameset = pipeline.wait_for_frames()
@@ -50,22 +65,22 @@ def get_frameset():
 
 
 def get_color_and_depth_frames():
-    # Store next frameset for later processing:
-    frameset = get_frameset()
+    """
+This method stores next frameset for later processing and gets color frames. After that  it creates alignment primitive with color as its target stream and filters depth map frames
 
+    :return: data of color frames and depth map frames
+    """
+
+    frameset = get_frameset()
     color_frame = frameset.get_color_frame()
     color = np.asanyarray(color_frame.get_data())
-
-    # Create alignment primitive with color as its target stream:
     frameset = rs.align(rs.stream.color).process(frameset)
-
-    # Filter depth frames:
     aligned_depth_frame = frameset.get_depth_frame()
-    #aligned_depth_frame = depth_to_disparity.process(aligned_depth_frame)
-    #aligned_depth_frame = spatial.process(aligned_depth_frame)
-    #aligned_depth_frame = temporal.process(aligned_depth_frame)
-    #aligned_depth_frame = disparity_to_depth.process(aligned_depth_frame)
-    #aligned_depth_frame = hole_filling.process(aligned_depth_frame)
+    # aligned_depth_frame = depth_to_disparity.process(aligned_depth_frame)
+    # aligned_depth_frame = spatial.process(aligned_depth_frame)
+    # aligned_depth_frame = temporal.process(aligned_depth_frame)
+    # aligned_depth_frame = disparity_to_depth.process(aligned_depth_frame)
+    # aligned_depth_frame = hole_filling.process(aligned_depth_frame)
 
     depth = np.asanyarray(aligned_depth_frame.get_data())
 
@@ -87,6 +102,15 @@ def fromRedis(r, name):
 
 
 def toRedis(arr: np.ndarray, name: str, pipe_redis):
+    """
+    This method sends an array of data with a key to Redis
+
+    Args:
+        arr (np.ndarray): array of data
+        name (str): key
+        pipe_redis: Redis pipeline
+    """
+
     if len(arr.shape) == 3:
         h, w, c = arr.shape
         shape = struct.pack('>IIII', 3, h, w, c)
@@ -100,6 +124,13 @@ def toRedis(arr: np.ndarray, name: str, pipe_redis):
 
 
 def send_data(msg):
+    """
+    This method sends to Redis fps parameter, color frames and depth map frames and mapping between the units of the depth image and meters. After that it publishes that data was sent.
+
+    Args:
+        msg:
+    """
+
     global last_time
     pipe.set('fps', str(1 / (time.time() - last_time)))
     # print(1 / (time.time() - last_time))
@@ -109,16 +140,19 @@ def send_data(msg):
     # r.flushall()
 
     color, depth, colorized_depth = get_color_and_depth_frames()
-
     toRedis(color, 'frame_color', pipe)
     toRedis(depth, 'frame_depth', pipe)
+
     # toRedis(colorized_depth, 'frame_colorized', pipe)
     pipe.set('depth_scale', depth_scale)
 
     pipe.execute()
-
+    fps = 1 / (time.time() - last_time)
+    data_size = data_size + len(color) + len(depth)
+    data_rate = data_size / (time.time() - last_time)
+    testFPS()
+    testDataRate()
     # print('\rFPS: {}'.format(1 / (time.time() - start)), end='')
-
     r.publish('detection-server', 'frame_color frame_depth frame_colorized depth_scale')
 
 
@@ -130,3 +164,22 @@ if __name__ == '__main__':
     thread = p.run_in_thread(sleep_time=0.00001)
     send_data('test')
     thread.join()
+
+
+def testFPS:
+    """
+This method tests fps for transmission 
+
+    """
+
+    print('FPS =    '.format(fps))
+    # toRedit(fps, 'FPS',pipe)
+
+
+def testDataRate
+    """
+This method tests data rate for transmission 
+
+    """
+    print('Data rate =  '.format(data_rate))
+    # toRedit(data_rate, 'DATA_RATE',pipe)
