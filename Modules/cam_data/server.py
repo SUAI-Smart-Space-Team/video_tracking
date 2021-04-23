@@ -50,7 +50,7 @@ Exceptions:
     If any errors occur during code execution,it will reconnect to Intel Real Sense camera.
 
     :return: set of frames
-    """
+"""
 
     while True:
         try:
@@ -65,11 +65,11 @@ Exceptions:
 
 
 def get_color_and_depth_frames():
-    """
+"""
 This method stores next frameset for later processing and gets color frames. After that  it creates alignment primitive with color as its target stream and filters depth map frames
 
     :return: data of color frames and depth map frames
-    """
+"""
 
     frameset = get_frameset()
     color_frame = frameset.get_color_frame()
@@ -102,14 +102,14 @@ def fromRedis(r, name):
 
 
 def toRedis(arr: np.ndarray, name: str, pipe_redis):
-    """
-    This method sends an array of data with a key to Redis
+"""
+This method sends an array of data with a key to Redis
 
-    Args:
-        arr (np.ndarray): array of data
-        name (str): key
-        pipe_redis: Redis pipeline
-    """
+Args:
+    arr (np.ndarray): array of data
+    name (str): key
+    pipe_redis: Redis pipeline
+"""
 
     if len(arr.shape) == 3:
         h, w, c = arr.shape
@@ -124,12 +124,12 @@ def toRedis(arr: np.ndarray, name: str, pipe_redis):
 
 
 def send_data(msg):
-    """
-    This method sends to Redis fps parameter, color frames and depth map frames and mapping between the units of the depth image and meters. After that it publishes that data was sent.
+"""
+This method sends to Redis fps parameter, color frames and depth map frames and mapping between the units of the depth image and meters. After that it publishes that data was sent.
 
-    Args:
-        msg:
-    """
+Args:
+    msg:
+"""
 
     global last_time
     pipe.set('fps', str(1 / (time.time() - last_time)))
@@ -167,19 +167,19 @@ if __name__ == '__main__':
 
 
 def testFPS:
-    """
+"""
 This method tests fps for transmission 
 
-    """
+"""
 
     print('FPS =    '.format(fps))
     # toRedit(fps, 'FPS',pipe)
 
 
 def testDataRate
-    """
+"""
 This method tests data rate for transmission 
 
-    """
+"""
     print('Data rate =  '.format(data_rate))
     # toRedit(data_rate, 'DATA_RATE',pipe)
