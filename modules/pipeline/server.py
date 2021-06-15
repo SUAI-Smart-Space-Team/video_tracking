@@ -44,7 +44,8 @@ def processing(msg):
         old_ts = r.get('timestamp')
         if old_ts:
             for key in r.keys(b'*' + old_ts):
-                pipe.delete(key)
+                pipe.rename(key, key.decode('ascii').split('_')[0] + '_show')
+                # pipe.delete(key)
 
         pipe.set('timestamp', timestamp)
         last_time = time.time()

@@ -71,11 +71,9 @@ app = Flask(__name__)
 
 def gen_frames():
     while True:
-        timestamp = r.get('timestamp').decode('ascii')
-
-        pipe.get('cf_' + timestamp)
-        pipe.get('coord_' + timestamp)
-        pipe.get('track_' + timestamp)
+        pipe.get('cf_show')
+        pipe.get('coord_show')
+        pipe.get('track_show')
         pipe.get('fps')
 
         color, coordinates, track_result, fps = pipe.execute()

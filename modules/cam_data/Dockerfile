@@ -1,11 +1,14 @@
 FROM python:3.7.10-slim
 
-ENV IS_RP=0
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/server/pylibrs/
+ENV PYTHONPATH=$PYTHONPATH:/server/pylibrs/
 
 WORKDIR /server
 
-RUN apt update && apt install -y libusb-1.0-0-dev libturbojpeg0 && rm -rf /var/lib/apt/lists/*
+RUN apt update && apt install -y libusb-1.0-0-dev libatlas-base-dev libatomic1 && rm -rf /var/lib/apt/lists/*
 
-RUN pip install numpy redis PyTurboJPEG pyrealsense2
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
 COPY . .
+
 CMD ["python", "server.py"]

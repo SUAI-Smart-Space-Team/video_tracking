@@ -15,7 +15,7 @@ p = r.pubsub()
 im_shape = [int(s) for s in r.get('im-shape').split()]
 
 room, cameras = read_json('search_coord/room.json')
-camera = cameras[1]
+camera = cameras[0]
 
 
 def get_boxes_out_of_depth_frame(depth_frame, boxes, masks):
